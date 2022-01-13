@@ -1,5 +1,5 @@
 use backroll_transport_steam::SteamP2PManager;
-use bevy_app::{AppBuilder, Plugin};
+use bevy_app::Plugin;
 use bevy_ecs::prelude::*;
 use bevy_steamworks::{Client, ClientManager, SteamworksPlugin};
 use bevy_tasks::IoTaskPool;
@@ -21,9 +21,8 @@ fn initialize_steam_socket(
 pub struct BackrollSteamPlugin;
 
 impl Plugin for BackrollSteamPlugin {
-    fn build(&self, builder: &mut AppBuilder) {
-        builder
-            .add_plugin(SteamworksPlugin)
+    fn build(&self, app: &mut App) {
+        app.add_plugin(SteamworksPlugin)
             .add_startup_system(initialize_steam_socket.system());
     }
 }
